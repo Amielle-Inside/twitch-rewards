@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center;">
+        <h1>{{ user.name }}</h1>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <img src="{{ user.profile_image_url }}" />
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <h2>Trophies</h2>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        {% for trophy in user.trophies %}
+            <div style="display: flex;flex-direction: column;align-items: anchor-center;">
+                <img src="{{ trophy.image_path }}" style="width: 100px;" />
+                {{ trophy.name }}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

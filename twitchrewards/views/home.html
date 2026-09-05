@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        <fieldset id="pronouns-selector">
+            <legend>Escolha seus pronomes (Só pode escolher 1 por enquanto)</legend>
+            <div>
+                <input type="radio" id="none" name="pronouns" value="0" />
+                <label for="none">Não definido</label>
+            </div>
+            <div>
+                <input type="radio" id="he" name="pronouns" value="1" />
+                <label for="he">Ele/dele</label>
+            </div>
+            <div>
+                <input type="radio" id="she" name="pronouns" value="2" />
+                <label for="she">Ela/dela</label>
+            </div>
+            <div>
+                <input type="radio" id="they" name="pronouns" value="3" />
+                <label for="they">Elu/delu</label>
+            </div>
+            <div>
+                <input type="radio" id="all" name="pronouns" value="4" />
+                <label for="all">Todos</label>
+            </div>
+        </fieldset>
+    </form>
+
+    <form>
+        <fieldset>
+            <legend>Selecione os trofeus para aparecer no chat:</legend>
+            {% for trophy in user.trophies %}
+                <div style="display: flex;flex-direction: column;align-items: anchor-center;">
+                    <img src="{{ trophy.image_path }}" style="width: 100px;" />
+                    <label for="trophy-{{ trophy.id }}">{{ trophy.name }}</label>
+                    <input class="active-trophy-option" type="checkbox" name="trophy-{{ trophy.id }}" data-trophy-id="{{ trophy.id }}" {{ 'checked' if trophy.id in user.active_trophies_ids else '' }} />
+                </div>
+            {% endfor %}
+            <button id="submit-active-trophies">Salvar</button>
+        </fieldset>
+    </form>
+
+    <a href="/logout">Deslogar</a>
+</body>
+
+<script type="text/javascript" src="static/home/pronouns-form.js"></script>
+<script type="text/javascript" src="static/home/trophies-form-bar.js"></script>
+
+</html>

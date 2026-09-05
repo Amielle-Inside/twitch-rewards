@@ -1,0 +1,26 @@
+# Configuração global
+{
+    admin off
+    auto_https off
+}
+
+# HTTP (porta 80) - Cloudflare Tunnel termina SSL aqui
+http://newsinsides.ddns.net:80 {
+    # ACME challenge (mantido por compatibilidade)
+    @acme path /.well-known/acme-challenge/*
+    respond @acme "ok" 200
+    
+    # Proxy para app
+    reverse_proxy twitch-rewards:5151
+    header {
+        Strict-Transport-Security "max-age=31536000"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+}
+
+# Porta 5151 - acesso interno direto
+:5151 {
+    reverse_proxy twitch-rewards:5151
+}

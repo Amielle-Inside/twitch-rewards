@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trophy</title>
+</head>
+<body>
+    <h1 style="display: flex; justify-content: center;">{{ trophy.name }}</h1>
+    <div style="display: flex; justify-content: center;">
+        <img src="{{ trophy.image_path }}" />
+    </div>    
+    <div style="display: flex; justify-content: center;">
+        {{ trophy.description }}
+    </div>
+
+    {% if has_trophy %}
+        <p style="display: flex; justify-content: center;">Voce ja tem esse trofeu! :)</p>
+    {% elif not trophy.redeemable %}
+        <p style="display: flex; justify-content: center;">Esse trofeu ja nao e mais resgatavel :(</p>
+    {% else %}
+        <div style="display: flex; justify-content: center;">
+            <button id="redeem" style="display: flex; justify-content: center;" data-trophy-id="{{ trophy.id }}">Resgatar</button>
+        </div>
+    {% endif %}
+
+</body>
+
+<script type="text/javascript" src="/static/trophy/redeem.js"></script>
+
+</html>

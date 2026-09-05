@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    command: tunnel --no-autoupdate run --token eyJhIjoiOTJhMzdjNDBjOWY3ZDJmOTgyODY0YTRiZTIzMGRkMTEiLCJ0IjoiZjkxYmVkMTYtZTFiNC00Nzk4LWEyNmMtN2NiN2UyNjBmY2ZiIiwicyI6Ik9XWXlORFF3WW1RdE1UWm1ZeTAwTjJRMUxUa3hNRFF0TWpNek5UVTRPRFZpWlRVMSJ9
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+
+  app:
+    container_name: twitch-rewards
+    image: adai1ne/twitch-rewards:latest
+    build: .
+    expose:
+      - '5151'
+    depends_on:
+      - db
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  db:
+    container_name: twitch-rewards-db
+    image: postgres:16-alpine
+    ports:
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+    env_file:
+      - .env
+    restart: unless-stopped
+
+volumes:
+  db:
+    driver: local
+  caddy_data:
+  caddy_config:

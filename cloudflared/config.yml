@@ -1,0 +1,10 @@
+tunnel: twitch-rewards
+credentials-file: /etc/cloudflared/credentials.json
+
+ingress:
+  - hostname: newsinsides.ddns.net
+    service: http://localhost:5151
+  - service: http_status:404
+
+warp-routing:
+  enabled: false
