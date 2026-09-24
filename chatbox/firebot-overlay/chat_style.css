@@ -1,0 +1,191 @@
+/* =========================================================
+   CHATBOX OBS — Firebot overlay (djnrrd) + custom Amielle
+   Texto grande, contorno, sombra e fundo 100% transparente
+   ========================================================= */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    color: white;
+    overflow: hidden;
+}
+
+p {
+    font-weight: bold;
+}
+
+#chat_overlay {
+    position: absolute;
+    bottom: 10px;
+    width: 98%;
+}
+
+/* Container de cada mensagem: sem gradiente arco-íris */
+.chat_message {
+    width: 100%;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 2px;
+    margin: 2px;
+
+    -webkit-text-stroke: 1px #000000;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.95),
+        0 0 6px rgba(0, 0, 0, 0.75);
+}
+
+/* Containers internos: sem background */
+.user_details,
+.msg_text,
+div.msg_text,
+p.msg_text,
+.chat_badges,
+.pronoun_tag {
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+.user_details {
+    padding: 1px;
+    margin: 1px;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+/* Pronomes: linha própria acima do nome */
+.pronoun_line {
+    padding: 1px;
+    margin: 1px 1px 4px 1px;
+    display: block;
+    width: fit-content;
+}
+
+.pronoun_line p {
+    display: inline;
+    margin: 0;
+}
+
+/* Texto da mensagem */
+.msg_text {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-indent: 0;
+    display: inline;
+
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+
+    -webkit-text-stroke: 1px #000000;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.95),
+        0 0 6px rgba(0, 0, 0, 0.75);
+}
+
+p.slash_me {
+    font-style: italic;
+}
+
+/* Nome do usuário: sem color aqui — a cor da Twitch (style inline) prevalece */
+.display_name {
+    display: inline;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+
+    -webkit-text-stroke: 1px #000000;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.95);
+}
+
+/* Linha Nome (Pronomes): texto — tudo inline */
+.name_pronoun_line {
+    display: block;
+    margin: 0;
+}
+
+.name_pronoun_line p {
+    display: inline;
+    margin: 0;
+}
+
+.msg_colon {
+    color: #ffffff;
+    -webkit-text-stroke: 1px #000000;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.95);
+}
+
+/* Badges: só as imagens */
+.chat_badges {
+    padding: 1px;
+    margin: 1px;
+    display: inline;
+}
+
+.chat_badges img,
+img.chat_badges {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* Tag de pronome: destaque, mesma escala do nome, ao lado das badges */
+.pronoun_tag {
+    display: inline;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: #e5e5e5;
+    margin-left: 8px;
+    vertical-align: middle;
+
+    -webkit-text-stroke: 1px #000000;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.95);
+}
+
+/* Remove pseudo-elementos de gradientes/efeitos de fundo */
+.chat_message::before,
+.chat_message::after,
+.user_details::before,
+.user_details::after,
+.msg_text::before,
+.msg_text::after,
+.display_name::before,
+.display_name::after {
+    content: none;
+    display: none;
+    background: transparent;
+    background-image: none;
+    box-shadow: none;
+}
