@@ -1,31 +1,27 @@
-version: '3.8'
 services:
   app:
-    container_name: app
+    container_name: twitch-rewards
     image: adai1ne/twitch-rewards:latest
     build: .
     ports:
-      - '443:443'
+      - '127.0.0.1:5151:5151'
     depends_on:
       - db
     env_file:
       - .env
-    volumes:
-      - /etc/ssl/certs:/etc/ssl/certs:ro
+    restart: unless-stopped
 
   db:
-    container_name: db
+    container_name: twitch-rewards-db
     image: postgres:16-alpine
     ports:
-      - '172.17.0.1:5432:5432'
       - '127.0.0.1:5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
     env_file:
       - .env
+    restart: unless-stopped
 
 volumes:
-  app:
-    driver: local
   db:
     driver: local

@@ -3,6 +3,7 @@
 from fastapi import APIRouter, HTTPException, status
 from fastapi.responses import FileResponse, Response
 
+from twitchrewards.config import settings
 from twitchrewards.controllers.view_models import AuthenticationData
 from twitchrewards.services.authentication import (
     AUTH_COOKIE_KEY,
